@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Element Counter Form </title>
+    <style>
+        /* Styles for body, form, labels, and inputs */
+        body {
+            font-family: Arial, sans-serif;
+            background-color:#fed6e3;
+            margin: 0;
+            padding: 20px;
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            height: 75vh;
+        }
+        
+        form {
+            background-color: lavender;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        input[type="text"],
+        input[type="registerno"],
+        input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: #fff;
+            border: double;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Align checkboxes and radio buttons in a row */
+        .inline {
+            display: flex;
+            align-items: center;
+        }
+        
+        .inline input[type="checkbox"],
+        .inline input[type="radio"] {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+  <h1><b><center><marquee> Count Elements </marquee></center></b></h1>
+    <form id="myForm">
+        <label for="name"> Name: </label>
+        <input type="text" id="name" name="name" required minlength="2" maxlength="50">
+
+        <label for="registerno"> RegisterNo: </label>
+        <input type="text" id="registerno" name="registerno" required minlength="2" maxlength="50">
+                
+        <label for="email"> Email: </label>
+        <input type="email" id="email" name="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+
+        <label><b> Gender: </b></label>
+        <div class="inline">
+            <input type="radio" id="male" name="gender" value="male" required>
+            <label for="male"> Male </label>
+            <input type="radio" id="female" name="gender" value="female" required>
+            <label for="female"> Female </label>
+        </div>
+        <br>
+
+        <label><b> Hobbies: </b></label>
+        <div class="inline">
+            <input type="checkbox" id="reading" name="hobbies" value="reading" required>
+            <label for="reading"> Reading </label>
+            <input type="checkbox" id="coding" name="hobbies" value="coding" required>
+            <label for="coding"> Coding </label>
+        </div>
+        <br>
+        <center>
+        <button type="button" onclick="countVisibleElements()"> Count Elements </button>
+      </center>
+    </form>
+
+    <script>
+        function countVisibleElements() {
+            var form = document.getElementById("myForm");
+            var visibleElements = 0;
+
+            for (var i = 0; i < form.elements.length; i++) {
+                if (form.elements[i].offsetParent !== null) {
+                    visibleElements++;
+                }
+            }
+
+            alert("Total Number of Visible Elements in the Form: " + visibleElements);
+        }
+    </script>
+
+</body>
+</html>
